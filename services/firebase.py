@@ -1,3 +1,4 @@
+import json
 from typing import Union
 
 import firebase_admin
@@ -12,7 +13,8 @@ application_config = ApplicationConfig()
 
 def init_firebase() -> firebase_admin.App:
     global app
-    cred = firebase_admin.credentials.Certificate(application_config.firebase_service_account_json_path)
+    certificate_dict = json.loads(application_config.firebase_service_account_json)
+    cred = firebase_admin.credentials.Certificate(certificate_dict)
     app = firebase_admin.initialize_app(cred)
     return app
 

@@ -2,7 +2,7 @@ import logging
 
 __handler = logging.StreamHandler()
 __formatter = logging.Formatter(
-    fmt = '%(levelname)s(%(name)s):\t%(message)s'
+    fmt='%(levelname)s(%(name)s):\t%(message)s'
 )
 __handler.formatter = __formatter
 

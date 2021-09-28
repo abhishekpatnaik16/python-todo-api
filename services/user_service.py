@@ -10,10 +10,10 @@ class UserService(BaseStorageService, BaseAuthService):
             user_signup_data.name, user_signup_data.email, user_signup_data.password
         )
         new_user_data = UserData(
-            name = user_signup_data.name,
-            email = user_signup_data.email,
+            name=user_signup_data.name,
+            email=user_signup_data.email,
         )
-        return self._storage_service.store_with_id(USERS_COLLECTION, auth_user_record.uid, new_user_data)\
+        return self._storage_service.store_with_id(USERS_COLLECTION, auth_user_record.uid, new_user_data) \
             .convert_to(User)
 
     def get_user_from_token(self, token: str) -> User:

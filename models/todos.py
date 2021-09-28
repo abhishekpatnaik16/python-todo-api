@@ -1,6 +1,7 @@
 from typing import Optional
 
 from pydantic import BaseModel
+from pydantic.types import Dict
 
 from models.common import BaseStorableEntity
 
@@ -19,9 +20,15 @@ class TodoItem(BaseStorableEntity):
     data: TodoItemData
 
 
+class TodoListPermission(BaseModel):
+    email: str
+    read_only: bool = True
+
+
 class TodoListData(BaseModel):
     name: str
     owner: str
+    access: Dict[str, TodoListPermission] = {}
 
 
 class TodoList(BaseStorableEntity):
@@ -31,6 +38,12 @@ class TodoList(BaseStorableEntity):
         if self.data.owner != email:
             raise Exception(f'TodoList({self.id}) is not owner by {email}')
 
+    def with_write_user(self, email: str):
+        pass
+
+    def with_read_user(self, email: str):
+        pass
+
 
 class CreateTodoListRequest(BaseModel):
     name: str
@@ -38,3 +51,7 @@ class CreateTodoListRequest(BaseModel):
 
 class CreateTodoItemRequest(BaseModel):
     content: str
+
+
+class EmailFieldRequest(BaseModel):
+    email: str

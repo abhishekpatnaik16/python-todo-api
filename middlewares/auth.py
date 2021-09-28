@@ -10,7 +10,7 @@ logger = get_app_logger(__name__)
 user_service = UserService()
 
 http_bearer_scheme = HTTPBearer(
-    description = 'FirebaseAuth JWT Bearer Token'
+    description='FirebaseAuth JWT Bearer Token'
 )
 
 
@@ -21,5 +21,5 @@ def get_authorized_user(
         token = authorization.credentials
         return user_service.get_user_from_token(token)
     except Exception as ex:
-        logger.exception(f'Failed to authorize user', exc_info = ex)
+        logger.exception(f'Failed to authorize user', exc_info=ex)
         raise HTTPException(403, 'Failed to authorize request')

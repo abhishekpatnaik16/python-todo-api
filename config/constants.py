@@ -7,4 +7,4 @@ USERS_COLLECTION = 'users'
 
 class ApplicationConfig(BaseSettings):
     firebase_api_key: str
-    firebase_service_account_json_path: str
+    firebase_service_account_json: str

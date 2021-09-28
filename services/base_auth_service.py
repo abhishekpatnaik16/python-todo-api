@@ -22,14 +22,14 @@ def firebase_sign_in_user(email: str, password: str) -> FirebaseAuthResponse:
     json = response.json()
     if response.ok:
         return FirebaseAuthResponse(
-            kind = json['kind'],
-            idToken = json['idToken'],
-            email = json['email'],
-            refreshToken = json['refreshToken'],
-            expiresIn = json['expiresIn'],
-            localId = json['localId'],
-            registered = json['registered'],
-            displayName = json['displayName']
+            kind=json['kind'],
+            idToken=json['idToken'],
+            email=json['email'],
+            refreshToken=json['refreshToken'],
+            expiresIn=json['expiresIn'],
+            localId=json['localId'],
+            registered=json['registered'],
+            displayName=json['displayName']
         )
     raise Exception(json)
 
@@ -39,9 +39,9 @@ class BaseAuthService:
 
     def auth_signup_user(self, display_name: str, email: str, password: str) -> UserRecord:
         return self._auth_client.create_user(
-            display_name = display_name,
-            email = email,
-            password = password
+            display_name=display_name,
+            email=email,
+            password=password
         )
 
     def auth_verify_id_token(self, id_token: str) -> DecodedIdToken:
